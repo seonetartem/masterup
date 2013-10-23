@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>DD36A53A-722F-4203-BE80-5116D81DC435</string>
+	<key>IDESourceControlProjectName</key>
+	<string>first</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>50D360A2-933A-4810-9BD5-329A3F9B81EF</key>
+		<string>ssh://github.com/seonetartem/masterup.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>first/first.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>50D360A2-933A-4810-9BD5-329A3F9B81EF</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/seonetartem/masterup.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>50D360A2-933A-4810-9BD5-329A3F9B81EF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>50D360A2-933A-4810-9BD5-329A3F9B81EF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>masterup</string>
+		</dict>
+	</array>
+</dict>
+</plist>
