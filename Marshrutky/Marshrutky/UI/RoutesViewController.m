@@ -10,7 +10,7 @@
 #import "RoutCell.h"
 
 @interface RoutesViewController ()
-
+    @property (nonatomic, strong) NSArray *routes;
 @end
 
 @implementation RoutesViewController
@@ -21,6 +21,25 @@
     if (self) {
     }
     return self;
+}
+
+-(void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@"http://itomy.ch/routes.php"]];
+
+    AFJSONRequestOperation *jsonOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+       
+        self.routes = JSON;
+        [self.tableView reloadData];
+
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        NSLog(@"%@", error);
+    }];
+    
+    [jsonOperation start];
+                                             
 }
 
 - (void)viewDidLoad
@@ -40,7 +59,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -51,18 +69,21 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 10;
+    return [self.routes count];
 }
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    NSDictionary *item = [self.routes objectAtIndex:indexPath.row];
+    
     static NSString *CellIdentifier = @"Cell";
     RoutCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    float price = (((float)random()/RAND_MAX)*3)+2;
 
-    cell.routName.text = [NSString stringWithFormat:@"Rout %d", ++self.count];
-    cell.routPrice.text = [NSString stringWithFormat:@"%1.2f", price];
+    cell.routName.text = [item objectForKey:@"route_title"];
+    cell.routPrice.text = [item objectForKey:@"route_price"];
 
 	switch (indexPath.section) {
         case 0:
