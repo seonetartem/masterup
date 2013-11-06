@@ -63,7 +63,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -84,17 +84,18 @@
 
     cell.routName.text = [item objectForKey:@"route_title"];
     cell.routPrice.text = [item objectForKey:@"route_price"];
+    cell.image1.image = [UIImage imageNamed:@"star_gray"];
 
-	switch (indexPath.section) {
-        case 0:
-            cell.image1.image = [UIImage imageNamed:@"star_gold"];
-            break;
-        case 1:
-            cell.image1.image = [UIImage imageNamed:@"star_gray"];
-            break;
-        default:
-            break;
-    }
+//	switch (indexPath.section) {
+//        case 0:
+//            cell.image1.image = [UIImage imageNamed:@"star_gold"];
+//            break;
+//        case 1:
+//            cell.image1.image = [UIImage imageNamed:@"star_gray"];
+//            break;
+//        default:
+//            break;
+//    }
     
 
     return cell;
