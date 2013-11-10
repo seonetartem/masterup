@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AFNetworking.h"
+#import "ApiRouteClient.h"
+#import "Route.h"
+#import "RoutCell.h"
 
-@interface RoutesViewController : UITableViewController
-@property int count;
+@interface RoutesViewController : UITableViewController <ApiRouteClientDelegate>
+    @property int count;
 @end

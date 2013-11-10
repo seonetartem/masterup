@@ -7,10 +7,13 @@
 //
 
 #import "RoutesViewController.h"
-#import "RoutCell.h"
+#import "AFHTTPClient.h"
+
 
 @interface RoutesViewController ()
-    @property (nonatomic, strong) NSArray *routes;
+//    @property (nonatomic, strong) NSArray *routes;
+    @property (strong, nonatomic) NSMutableArray *modelRoutes;
+    @property (strong, nonatomic) NSMutableArray *modelFavoriteRoutes;
 @end
 
 @implementation RoutesViewController
@@ -27,30 +30,49 @@
 {
     [super awakeFromNib];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@"http://itomy.ch/routes.php"]];
-
-    AFJSONRequestOperation *jsonOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-       
-        self.routes = JSON;
-        [self.tableView reloadData];
-
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        NSLog(@"%@", error);
-    }];
+//    NSURLRequest *request = [NSURLRequest requestWithURL: [NSURL URLWithString:@"http://itomy.ch/routes.php"]];
+//
+//    AFJSONRequestOperation *jsonOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+//       
+//        self.routes = JSON;
+//        [self.tableView reloadData];
+//
+//    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+//        NSLog(@"%@", error);
+//    }];
+//    
+//    [jsonOperation start];
     
-    [jsonOperation start];
-                                             
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    ApiRouteClient *sharedRouteClient = [ApiRouteClient sharedInstance];
+    
+    sharedRouteClient.delegate = self;
+    [sharedRouteClient updateRoutesList:^(NSArray *routes) {
+        NSEnumerator *enumerator = [routes objectEnumerator];
+        id obj;
+        
+        while ((obj = [enumerator nextObject]))
+        {
+            Route *route = [[Route alloc] initWithDictionary:(NSDictionary *)obj];
+            [self.modelRoutes addObject:route];
+        }
+        
+        [self.tableView reloadData];
+        
+    }
+    failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
+    
+    [self.navigationItem setTitle:NSLocalizedString(@"ALL ROUTES", nil)];
+    
+    self.modelRoutes = [[NSMutableArray alloc] init];
+    self.modelFavoriteRoutes = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,22 +90,25 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return [self.routes count];
+    NSInteger rows;
+
+    rows = self.modelRoutes.count;
+
+    return rows;
 }
 
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    NSDictionary *item = [self.routes objectAtIndex:indexPath.row];
-    
+   
     static NSString *CellIdentifier = @"Cell";
     RoutCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
-    cell.routName.text = [item objectForKey:@"route_title"];
-    cell.routPrice.text = [item objectForKey:@"route_price"];
+    
+    Route *obj = [self.modelRoutes objectAtIndex:indexPath.row];
+//
+    cell.routName.text = obj.title;
+    cell.routPrice.text = obj.price;
     cell.image1.image = [UIImage imageNamed:@"star_gray"];
 
 //	switch (indexPath.section) {
@@ -99,6 +124,24 @@
     
 
     return cell;
+}
+
+- (void)ApiRouteClient:(ApiRouteClient *)client didUpdateRoutes:(NSArray *)routes
+{
+    NSEnumerator *enumerator = [routes objectEnumerator];
+    id obj;
+    while ((obj = [enumerator nextObject]))
+    {
+        Route *route = [[Route alloc] initWithDictionary:(NSDictionary *)obj];
+        [self.modelRoutes addObject:route];
+    }
+    
+    [self.tableView reloadData];
+}
+
+- (void)ApiRouteClient:(ApiRouteClient *)client didFailWithError:(NSError *)error
+{
+    NSLog(@"Error API %@", error.description);
 }
 
 /*

@@ -12,6 +12,8 @@
 		E18B6E2118251146000E402F /* SidePanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E18B6E2018251146000E402F /* SidePanelViewController.m */; };
 		E1A1E40018218A4E000A34FD /* RoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A1E3FF18218A4E000A34FD /* RoutesViewController.m */; };
 		E1A1E40318219B94000A34FD /* RoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A1E40218219B94000A34FD /* RoutCell.m */; };
+		E1C45684183002A800F06E89 /* ApiRouteClient.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C45683183002A800F06E89 /* ApiRouteClient.m */; };
+		E1C45687183011CE00F06E89 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C45686183011CE00F06E89 /* Route.m */; };
 		E1E0F8C31820384A00B2F0F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E0F8C21820384A00B2F0F1 /* UIKit.framework */; };
 		E1E0F8C51820384A00B2F0F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E0F8C41820384A00B2F0F1 /* Foundation.framework */; };
 		E1E0F8C71820384A00B2F0F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E0F8C61820384A00B2F0F1 /* CoreGraphics.framework */; };
@@ -64,6 +66,10 @@
 		E1A1E3FF18218A4E000A34FD /* RoutesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoutesViewController.m; path = UI/RoutesViewController.m; sourceTree = "<group>"; };
 		E1A1E40118219B94000A34FD /* RoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = RoutCell.h; path = UI/RoutCell.h; sourceTree = "<group>"; };
 		E1A1E40218219B94000A34FD /* RoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RoutCell.m; path = UI/RoutCell.m; sourceTree = "<group>"; };
+		E1C45682183002A800F06E89 /* ApiRouteClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApiRouteClient.h; sourceTree = "<group>"; };
+		E1C45683183002A800F06E89 /* ApiRouteClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApiRouteClient.m; sourceTree = "<group>"; };
+		E1C45685183011CE00F06E89 /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
+		E1C45686183011CE00F06E89 /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
 		E1E0F8BF1820384A00B2F0F1 /* Marshrutky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marshrutky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E0F8C21820384A00B2F0F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E1E0F8C41820384A00B2F0F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -169,6 +175,10 @@
 				E18B6E1C182505BA000E402F /* UI */,
 				E1E0F8C91820384A00B2F0F1 /* Supporting Files */,
 				E1841BE91821BED700AD7010 /* Images.xcassets */,
+				E1C45682183002A800F06E89 /* ApiRouteClient.h */,
+				E1C45683183002A800F06E89 /* ApiRouteClient.m */,
+				E1C45685183011CE00F06E89 /* Route.h */,
+				E1C45686183011CE00F06E89 /* Route.m */,
 			);
 			path = Marshrutky;
 			sourceTree = "<group>";
@@ -353,10 +363,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1E0F8CF1820384A00B2F0F1 /* main.m in Sources */,
+				E1C45684183002A800F06E89 /* ApiRouteClient.m in Sources */,
 				E18B6E2118251146000E402F /* SidePanelViewController.m in Sources */,
 				E1E0F8D31820384A00B2F0F1 /* AppDelegate.m in Sources */,
 				E1A1E40018218A4E000A34FD /* RoutesViewController.m in Sources */,
 				E1A1E40318219B94000A34FD /* RoutCell.m in Sources */,
+				E1C45687183011CE00F06E89 /* Route.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
